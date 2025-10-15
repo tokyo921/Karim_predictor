@@ -1,73 +1,234 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صفحة كريم - إشارات Aviator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>صفحة Karim - إشارات Aviator</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
-    body {margin:0;font-family:'Orbitron',sans-serif;background:linear-gradient(to bottom,#060b1a,#000);color:white;text-align:center;direction:rtl;}
-    .button{background:linear-gradient(45deg,#d4145a,#fbb03b);border:none;border-radius:20px;color:white;padding:15px 30px;margin:10px;font-size:1.2em;cursor:pointer;box-shadow:0 0 20px rgba(255,0,100,0.6);text-decoration:none;display:inline-block;}
-    .button-green{background:linear-gradient(45deg,#0f0,#0c0);box-shadow:0 0 20px rgba(0,255,0,0.6);animation:pulse 1.5s infinite;}
-    @keyframes pulse{0%{box-shadow:0 0 10px #0f0;}50%{box-shadow:0 0 30px #0f0;}100%{box-shadow:0 0 10px #0f0;}}
-    .section{padding:30px 20px;}
-    table{margin:0 auto;border-collapse:collapse;width:90%;margin-bottom:40px;}
-    th,td{padding:12px;border-bottom:1px solid #444;}
-    .comment{background:#111c2b;margin:10px auto;padding:15px;border-radius:15px;max-width:700px;display:flex;align-items:center;}
-    .comment img{width:60px;height:60px;border-radius:50%;margin-left:15px;}
-    .modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;}
-    .modal-content{background:#111c2b;padding:20px;border-radius:12px;max-width:350px;width:90%;text-align:center;}
-    .modal input{padding:10px;font-size:1em;width:90%;margin:15px 0;border-radius:6px;border:none;text-align:center;}
-    #signal-display{font-size:1.5em;color:#00ffcc;margin-top:20px;}
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to bottom, #060b1a, #000000);
+      color: white;
+      text-align: center;
+      direction: rtl;
+    }
+    .container { padding: 24px; }
+    h1 { margin-top: 8px; font-size: 1.6rem; }
+    .button {
+      background: linear-gradient(45deg, #d4145a, #fbb03b);
+      border: none;
+      border-radius: 20px;
+      color: white;
+      padding: 12px 24px;
+      margin: 8px;
+      font-size: 1.05rem;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 0, 100, 0.45);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .button-green {
+      background: linear-gradient(45deg, #0f0, #0c0);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.35);
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 8px #0f0; }
+      50% { box-shadow: 0 0 24px #0f0; }
+      100% { box-shadow: 0 0 8px #0f0; }
+    }
+    .section { padding: 20px 12px; }
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 92%;
+      margin-bottom: 28px;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #333;
+      text-align: right;
+    }
+    .comment {
+      background: #0f1624;
+      margin: 10px auto;
+      padding: 12px;
+      border-radius: 14px;
+      max-width: 720px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .comment img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-left: 8px;
+    }
+    .comment-info { text-align: right; }
+    #signal-display {
+      font-size: 1.15rem;
+      color: #00ffcc;
+      margin-top: 14px;
+      min-height: 1.4em;
+    }
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.86);
+      justify-content: center;
+      align-items: center;
+      padding: 18px;
+    }
+    .modal-content {
+      background: #0b1220;
+      padding: 18px;
+      border-radius: 12px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .modal h2 { margin-top: 0; font-size: 1.05rem; }
+    .modal input {
+      padding: 10px;
+      font-size: 1rem;
+      width: 92%;
+      margin: 12px 0;
+      border-radius: 8px;
+      border: none;
+      text-align: center;
+    }
+    .note {
+      background: linear-gradient(90deg, rgba(255,200,0,0.12), rgba(255,0,0,0.06));
+      color: #fff;
+      padding: 12px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+    .cta-small { font-size: 0.95rem; color: #ddd; margin-top: 8px; }
+    footer { padding: 22px 8px 40px; color: #bbb; font-size: 0.92rem; }
+    @media (max-width: 520px) {
+      .button { padding: 10px 16px; font-size: 1rem; }
+      .comment { padding: 10px; }
+      th, td { padding: 8px; }
+    }
   </style>
 </head>
 <body>
-  <div class="section">
-    <h1>🚀 إشارات كريم ل Aviator - إبدا تربح اليوم</h1>
-    <a class="button" href="https://t.me/Karim_dz_bot" target="_blank">✉️ تواصل مع كريم</a>
-    <a class="button" href="https://reffpa.com/L?tag=d_3716855m_29091c_tam&site=3716855&ad=29091&r=registration" target="_blank">📝 سجل الآن</a>
-    <button class="button button-green" onclick="openModal()">✅ خذ إشارة مجانية</button>
-    <div id="signal-display"></div>
-    <div id="user-id"></div>
+  <div class="container">
+    <div class="section">
+      <h1>🚀 إشارات Karim لِـ Aviator — بَدّيّاك تربح اليوم</h1>
+      <a class="button" href="https://t.me/Karim_dz_bot" target="_blank" rel="noopener">✉️ تواصل مع Karim</a>
+      <a class="button" href="https://reffpa.com/L?tag=d_3716855m_29091c_tam&site=3716855&ad=29091&r=registration" target="_blank" rel="noopener">📝 سجّل الآن</a>
+      <button class="button button-green" onclick="openModal()">✅ خذ إشارة مجانية</button>
+      <div id="signal-display" aria-live="polite"></div>
+      <div id="user-id" style="margin-top:8px;"></div>
+    </div>
+
+    <div class="section">
+      <h2>🔴 الناس لي ربحوا معانا</h2>
+      <table>
+        <tr><th>الاسم</th><th>التعليق</th><th>الأرباح</th></tr>
+        <tr><td>يوسف من وهران</td><td>من نهار تبعت Karim ولات عندي ربح</td><td>120,500 DZD</td></tr>
+        <tr><td>عبد القادر</td><td>بصراحة الخدمة صادقة</td><td>98,300 DZD</td></tr>
+        <tr><td>رانية</td><td>الحكاية سهلة وواضحة</td><td>76,900 DZD</td></tr>
+        <tr><td>سليم</td><td>استراتيجية Karim نجّحت معايا</td><td>65,200 DZD</td></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="comment">
+        <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="avatar">
+        <div class="comment-info"><strong>مراد</strong><div class="cta-small">ربي يسهلك يا Karim — جزاك الله خير</div></div>
+      </div>
+
+      <div class="comment">
+        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="avatar">
+        <div class="comment-info"><strong>كريم DZ</strong><div class="cta-small">ثقة + مصداقية + نتائج</div></div>
+      </div>
+
+      <div class="comment">
+        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="avatar">
+        <div class="comment-info"><strong>سارة</strong><div class="cta-small">ما ندمتش كي تبعت Karim ✅</div></div>
+      </div>
+    </div>
   </div>
 
-  <div class="section">
-    <h2>🔴 ناس ربحت معانا قبل 🔥</h2>
-    <table>
-      <tr><th>الاسم</th><th>التعليق</th><th>الأرباح</th></tr>
-      <tr><td>يوسف من وهران</td><td>صراحة من نهار تبعت كريم وأنا نربح</td><td>120,500 DZD</td></tr>
-      <tr><td>عبد القادر</td><td>شكيت في الأول بصح الخدمة صادقة</td><td>98,300 DZD</td></tr>
-      <tr><td>رانية</td><td>عمرها ما كانت سهلة هكذا</td><td>76,900 DZD</td></tr>
-      <tr><td>سليم</td><td>دراهم صح مع استراتيجية كريم</td><td>65,200 DZD</td></tr>
-    </table>
-  </div>
-
-  <div class="section">
-    <div class="comment">
-      <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="avatar">
-      <div><strong>مراد</strong><br>ربي يسهلك يا كريم خيرك كبير</div>
-    </div>
-    <div class="comment">
-      <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="avatar">
-      <div><strong>كريم DZ</strong><br>ثقة + مصداقية + أرباح 🔥</div>
-    </div>
-    <div class="comment">
-      <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="avatar">
-      <div><strong>سارة</strong><br>ما ندمتش كي تبعت كريم ✅</div>
-    </div>
-  </div>
-
-  <div id="idModal" class="modal">
+  <!-- Modal -->
+  <div id="idModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-content">
-      <h2>دخل ID تاعك (10 أرقام)</h2>
-      <input type="text" id="melbetId" maxlength="10" placeholder="XXXXXXXXXX">
-      <button class="button button-green" onclick="submitId()">تأكيد</button>
+      <h2 id="modalTitle">دخل ID تاعك (10 أرقام)</h2>
+      <input type="text" id="melbetId" maxlength="10" placeholder="XXXXXXXXXX" aria-label="أدخل ID تاعك">
+      <div>
+        <button class="button button-green" onclick="submitId()">تأكيد</button>
+      </div>
+      <div id="modal-note" style="margin-top:12px; display:none;">
+        <div class="note">⚠️ لازم تدير إيداع 1800 دينار جزائري (DZD) باش يتفعل البرنامج</div>
+        <div class="cta-small" style="margin-top:8px;">من بعد ما تدير الوديعة، ابعثلي سكرينشوت باش نربطلك الحساب ونفعللك السوفت</div>
+      </div>
     </div>
   </div>
+
+  <footer>
+    <div>ملاحظة: الحساب لازم يكون جديد ومُسجّل عبر الرابط لي فوق، وإلا الإشارات ما راحش تكون دقيقة.</div>
+    <div style="margin-top:8px;">تواصل مع Karim: <a href="https://t.me/Karim_dz_bot" target="_blank" rel="noopener" style="color:#9be7d6; text-decoration:none;">@Karim_dz_bot</a></div>
+  </footer>
 
   <script>
-    function openModal(){document.getElementById("idModal").style.display="flex";}
-    function submitId(){const id=document.getElementById("melbetId").value;if(id.length!==10||isNaN(id)){alert("⚠️ لازم تدخل ID صحيح من 10 أرقام");return;}document.getElementById("idModal").style.display="none";document.getElementById("user-id").textContent="✅ ID تاعك: "+id;const display=document.getElementById("signal-display");display.textContent="⏳ جاري ربط البرنامج...";setTimeout(()=>{display.textContent="⚡ تجهيز الإشارة...";},3000);setTimeout(()=>{display.textContent="✅ باش تكمل تربط البرنامج لازم تدير إيداع بسيط 1800 دينار جزائري (DZD)";},6000);} window.onclick=function(e){const m=document.getElementById("idModal");if(e.target===m){m.style.display="none";}};
+    function openModal() {
+      document.getElementById("idModal").style.display = "flex";
+      // Reset modal state
+      document.getElementById("melbetId").value = "";
+      document.getElementById("modal-note").style.display = "none";
+    }
+
+    function submitId() {
+      const idEl = document.getElementById("melbetId");
+      const id = idEl.value.trim();
+      if (id.length !== 10 || isNaN(id)) {
+        alert("⚠️ لازم تدخل ID صحيح مكون من 10 أرقام");
+        idEl.focus();
+        return;
+      }
+
+      document.getElementById("idModal").style.display = "none";
+      document.getElementById("user-id").textContent = "✅ ID تاعك: " + id;
+
+      const display = document.getElementById("signal-display");
+      display.textContent = "⏳ جاري ربط البرنامج...";
+      setTimeout(() => {
+        display.textContent = "⚡ تجهيز الإشارة...";
+      }, 2000);
+
+      // show deposit instruction after short delay
+      setTimeout(() => {
+        display.textContent = "";
+        // show modal note area with deposit instruction (user will see it after closing)
+        document.getElementById("modal-note").style.display = "block";
+        // Also render a persistent note in the signal-display area
+        document.getElementById("signal-display").innerHTML =
+          '⚠️ <strong>لازم تدير إيداع 1800 دينار جزائري (DZD)</strong> باش يتفعل البرنامج.<br>بعد الوديعة، <em>ابعثلي سكرينشوت</em> على <a href="https://t.me/Karim_dz_bot" target="_blank" rel="noopener" style="color:#9be7d6; text-decoration:none;">@Karim_dz_bot</a>';
+      }, 4200);
+    }
+
+    // Close modal on outside click
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById("idModal");
+      if (event.target === modal) modal.style.display = "none";
+    });
   </script>
 </body>
 </html>
+
