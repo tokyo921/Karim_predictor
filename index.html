@@ -67,8 +67,7 @@
 
   <script>
     function openModal(){document.getElementById("idModal").style.display="flex";}
-    function submitId(){const id=document.getElementById("melbetId").value;if(id.length!==10||isNaN(id)){alert("⚠️ لازم تدخل ID صحيح من 10 أرقام");return;}document.getElementById("idModal").style.display="none";document.getElementById("user-id").textContent="✅ ID تاعك: "+id;const display=document.getElementById("signal-display");display.textContent="⏳ جاري ربط البرنامج...";setTimeout(()=>{display.textContent="⚡ تجهيز الإشارة...";},3000);setTimeout(()=>{display.textContent="✅ باش تكمل تربط البرنامج لازم تدير إيداع بسيط";},6000);} window.onclick=function(e){const m=document.getElementById("idModal");if(e.target===m){m.style.display="none";}};
+    function submitId(){const id=document.getElementById("melbetId").value;if(id.length!==10||isNaN(id)){alert("⚠️ لازم تدخل ID صحيح من 10 أرقام");return;}document.getElementById("idModal").style.display="none";document.getElementById("user-id").textContent="✅ ID تاعك: "+id;const display=document.getElementById("signal-display");display.textContent="⏳ جاري ربط البرنامج...";setTimeout(()=>{display.textContent="⚡ تجهيز الإشارة...";},3000);setTimeout(()=>{display.textContent="✅ باش تكمل تربط البرنامج لازم تدير إيداع بسيط 1800 دينار جزائري (DZD)";},6000);} window.onclick=function(e){const m=document.getElementById("idModal");if(e.target===m){m.style.display="none";}};
   </script>
 </body>
 </html>
-
